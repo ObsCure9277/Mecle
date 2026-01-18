@@ -64,46 +64,81 @@ export function KeyboardInput() {
   }, [addLetter, deleteLetter, submitGuess, gameStatus]);
 
   const getKeyClass = (key: string, state: 'correct' | 'present' | 'absent' | 'unused') => {
-    const baseClass = 'rounded-lg font-bold text-sm transition-all duration-200 cursor-pointer select-none flex items-center justify-center relative transform-gpu';
+    const baseClass = 'rounded-xl font-black text-sm transition-all duration-200 cursor-pointer select-none flex items-center justify-center relative transform-gpu uppercase tracking-wider';
     
     // Size classes
     const sizeClass = key === 'ENTER' || key === '←' 
-      ? 'px-4 h-14' 
-      : 'w-10 h-14';
+      ? 'px-5 h-16 text-xs' 
+      : 'w-11 h-16';
     
-    // 3D effects and depth
+    // Hyper-realistic neumorphic mechanical button styling
     let colorClass = '';
     let shadowClass = '';
+    let effectClass = '';
     
     if (state === 'correct') {
-      colorClass = 'bg-gradient-to-b from-[#6aaa64] to-[#538d4e] text-white border-2 border-[#3a6e3a]';
-      shadowClass = 'shadow-[0_4px_0_0_#3a6e3a,0_6px_15px_rgba(83,141,78,0.4)]';
+      // Correct - Illuminated green mechanical button
+      colorClass = 'bg-gradient-to-b from-[#5fb368] via-[#4a9d52] to-[#3d7f44] text-white border-2 border-[#5fb368]/40';
+      shadowClass = 'shadow-[inset_0_2px_6px_rgba(255,255,255,0.3),inset_0_-3px_8px_rgba(0,0,0,0.4),0_6px_0_0_#2d5a33,0_10px_20px_rgba(79,157,82,0.5),0_15px_35px_rgba(0,0,0,0.4)]';
+      effectClass = 'after:absolute after:inset-0 after:rounded-xl after:bg-gradient-to-t after:from-transparent after:via-white/10 after:to-white/25 after:pointer-events-none';
     } else if (state === 'present') {
-      colorClass = 'bg-gradient-to-b from-[#c9b458] to-[#b59f3b] text-white border-2 border-[#9a8532]';
-      shadowClass = 'shadow-[0_4px_0_0_#9a8532,0_6px_15px_rgba(181,159,59,0.4)]';
+      // Present - Amber warning button
+      colorClass = 'bg-gradient-to-b from-[#d4af37] via-[#b8952f] to-[#9a7a27] text-white border-2 border-[#d4af37]/40';
+      shadowClass = 'shadow-[inset_0_2px_6px_rgba(255,255,255,0.3),inset_0_-3px_8px_rgba(0,0,0,0.4),0_6px_0_0_#6d5a1d,0_10px_20px_rgba(212,175,55,0.5),0_15px_35px_rgba(0,0,0,0.4)]';
+      effectClass = 'after:absolute after:inset-0 after:rounded-xl after:bg-gradient-to-t after:from-transparent after:via-white/10 after:to-white/25 after:pointer-events-none';
     } else if (state === 'absent') {
-      colorClass = 'bg-gradient-to-b from-[#4a4a4c] to-[#3a3a3c] text-white border-2 border-[#2a2a2c]';
-      shadowClass = 'shadow-[0_4px_0_0_#2a2a2c,0_6px_15px_rgba(58,58,60,0.3)]';
+      // Absent - Darkened inactive button
+      colorClass = 'bg-gradient-to-b from-[#2f3439] via-[#272b30] to-[#1d2024] text-gray-500 border-2 border-[#3a3d45]/30';
+      shadowClass = 'shadow-[inset_0_2px_6px_rgba(255,255,255,0.03),inset_0_-3px_8px_rgba(0,0,0,0.6),0_6px_0_0_#0f1115,0_10px_20px_rgba(0,0,0,0.5)]';
     } else {
-      colorClass = 'bg-gradient-to-b from-[#919294] to-[#818384] text-white border-2 border-[#6a6a6c]';
-      shadowClass = 'shadow-[0_4px_0_0_#6a6a6c,0_6px_15px_rgba(129,131,132,0.3)]';
+      // Unused - Default steel mechanical button
+      colorClass = 'bg-gradient-to-b from-[#4a5060] via-[#3d4452] to-[#2f3440] text-white border-2 border-[#5a6070]/50';
+      shadowClass = 'shadow-[inset_0_2px_6px_rgba(255,255,255,0.15),inset_0_-3px_8px_rgba(0,0,0,0.4),0_6px_0_0_#1a1d23,0_10px_20px_rgba(0,0,0,0.5),0_2px_4px_rgba(255,255,255,0.1)]';
+      effectClass = 'after:absolute after:inset-0 after:rounded-xl after:bg-gradient-to-t after:from-transparent after:via-white/5 after:to-white/15 after:pointer-events-none';
     }
     
-    // Hover and active states
-    const interactiveClass = 'hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_6px_0_0_#6a6a6c,0_8px_20px_rgba(129,131,132,0.4)] active:translate-y-1 active:shadow-[0_2px_0_0_#6a6a6c]';
+    // Interactive states with realistic mechanical press
+    const interactiveClass = `
+      hover:brightness-110 
+      hover:-translate-y-1 
+      hover:shadow-[inset_0_2px_6px_rgba(255,255,255,0.2),inset_0_-3px_8px_rgba(0,0,0,0.3),0_8px_0_0_#1a1d23,0_12px_25px_rgba(0,0,0,0.6)]
+      active:translate-y-2 
+      active:shadow-[inset_0_3px_8px_rgba(0,0,0,0.6),inset_0_-1px_3px_rgba(255,255,255,0.1),0_2px_0_0_#0f1115]
+      disabled:opacity-50
+      disabled:cursor-not-allowed
+    `;
     
-    return `${baseClass} ${sizeClass} ${colorClass} ${shadowClass} ${interactiveClass}`;
+    return `${baseClass} ${sizeClass} ${colorClass} ${shadowClass} ${effectClass} ${interactiveClass}`;
   };
 
   return (
-    <div className="w-full max-w-[500px] mt-2" style={{perspective: '1000px'}}>
-      <div className="flex flex-col gap-2" style={{transformStyle: 'preserve-3d'}}>
+    <div 
+      className="w-full max-w-[550px] mt-6 p-6 rounded-2xl relative"
+      style={{
+        perspective: '1200px',
+        background: 'linear-gradient(145deg, #1e2128, #17191f)',
+        boxShadow: 'inset 0 4px 12px rgba(0,0,0,0.5), inset 0 -2px 6px rgba(255,255,255,0.03), 0 8px 24px rgba(0,0,0,0.4)',
+        border: '2px solid rgba(42,45,53,0.5)'
+      }}
+    >
+      {/* Mechanical plate texture */}
+      <div 
+        className="absolute inset-0 rounded-2xl pointer-events-none opacity-20"
+        style={{
+          backgroundImage: `
+            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px)
+          `
+        }}
+      />
+      
+      <div className="flex flex-col gap-2.5 relative z-10" style={{transformStyle: 'preserve-3d'}}>
         {KEYBOARD_ROWS.map((row, rowIndex) => (
           <div 
             key={rowIndex} 
-            className="flex justify-center gap-[6px]"
+            className="flex justify-center gap-2"
             style={{
-              transform: `rotateX(${2 - rowIndex}deg)`,
+              transform: `rotateX(${1.5 - rowIndex * 0.5}deg) translateZ(${rowIndex * 2}px)`,
               transformStyle: 'preserve-3d'
             }}
           >
@@ -117,7 +152,9 @@ export function KeyboardInput() {
                   disabled={gameStatus !== 'playing'}
                   style={{transformStyle: 'preserve-3d'}}
                 >
-                  {key === '←' ? '⌫' : key}
+                  <span className="relative z-10 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+                    {key === '←' ? '⌫' : key}
+                  </span>
                 </button>
               );
             })}
