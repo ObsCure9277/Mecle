@@ -4,14 +4,33 @@ from pydantic import BaseModel
 from typing import List
 from datetime import date
 import random
+import os
+from dotenv import load_dotenv
 from words import WORD_LIST
 
-app = FastAPI(title="Mechacrypt API")
+load_dotenv()
 
-# CORS configuration for local development
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
+app = FastAPI(
+    title="Mechacrypt API",
+    servers=[
+        {"url": BACKEND_URL, "description": "Production environment"},
+        {"url": "http://localhost:8000", "description": "Local environment"}
+    ]
+)
+
+# CORS configuration
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    FRONTEND_URL
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

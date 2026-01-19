@@ -25,7 +25,7 @@ export interface GameState {
    resetGame: () => Promise<void>;
 }
 
-const BACKEND_URL = 'http://localhost:8000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
 
 // Initialize empty grid (6 rows × 5 columns)
 const initializeGrid = (): TileData[][] => {
