@@ -68,7 +68,7 @@ export function KeyboardInput() {
     
     // Size classes
     const sizeClass = key === 'ENTER' || key === '←' 
-      ? 'px-5 h-16 text-xs' 
+      ? 'px-5 h-14 text-xs' 
       : 'w-11 h-14';
     
     // Hyper-realistic neumorphic mechanical button styling

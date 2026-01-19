@@ -14,10 +14,10 @@ function App() {
   }, [fetchDailyWord]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-8 px-4 relative">
+    <div className="min-h-screen flex flex-col items-center justify-center relative">
       {/* Header */}
       <header className="mb-6 text-center">
-        <h1 className="text-5xl font-black tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+        <h1 className="text-4xl font-black tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
           <span className="inline-block bg-gradient-to-br from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">M</span>
           <span className="inline-block bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">E</span>
           <span className="inline-block bg-gradient-to-br from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent">C</span>
