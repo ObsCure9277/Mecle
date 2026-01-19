@@ -7,6 +7,8 @@ interface TileProps {
   letter: string;
   state: LetterState;
   position: [number, number, number];
+  rowIndex: number;
+  colIndex: number;
 }
 
 const AnimatedGroup = animated.group;
