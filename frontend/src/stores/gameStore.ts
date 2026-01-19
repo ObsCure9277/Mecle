@@ -34,6 +34,37 @@ const initializeGrid = (): TileData[][] => {
    );
 };
 
+// Update game statistics
+const updateStats = (won: boolean, guessCount: number) => {
+   const statsKey = 'mechacrypt-stats';
+   const savedStats = localStorage.getItem(statsKey);
+
+   const stats = savedStats ? JSON.parse(savedStats) : {
+      gamesPlayed: 0,
+      gamesWon: 0,
+      currentStreak: 0,
+      maxStreak: 0,
+      guessDistribution: [0, 0, 0, 0, 0, 0]
+   };
+
+   stats.gamesPlayed += 1;
+
+   if (won) {
+      stats.gamesWon += 1;
+      stats.currentStreak += 1;
+      stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
+
+      // Update guess distribution (guessCount is 1-6, array index is 0-5)
+      if (guessCount >= 1 && guessCount <= 6) {
+         stats.guessDistribution[guessCount - 1] += 1;
+      }
+   } else {
+      stats.currentStreak = 0;
+   }
+
+   localStorage.setItem(statsKey, JSON.stringify(stats));
+};
+
 export const useGameStore = create<GameState>((set, get) => ({
    targetWord: '',
    guesses: initializeGrid(),
@@ -113,6 +144,11 @@ export const useGameStore = create<GameState>((set, get) => ({
 
          const newStatus = isWin ? 'won' : (isLastRow ? 'lost' : 'playing');
 
+         // Update game statistics when game ends
+         if (newStatus !== 'playing') {
+            updateStats(isWin, currentRow + 1);
+         }
+
          set({
             guesses: newGuesses,
             currentRow: isWin || isLastRow ? currentRow : currentRow + 1,
@@ -140,6 +176,11 @@ export const useGameStore = create<GameState>((set, get) => ({
          const isWin = newGuesses[currentRow].every(tile => tile.state === 'correct');
          const isLastRow = currentRow === 5;
          const newStatus = isWin ? 'won' : (isLastRow ? 'lost' : 'playing');
+
+         // Update game statistics when game ends
+         if (newStatus !== 'playing') {
+            updateStats(isWin, currentRow + 1);
+         }
 
          set({
             guesses: newGuesses,

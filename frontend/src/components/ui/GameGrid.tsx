@@ -68,7 +68,7 @@ export function GameGrid() {
 
   return (
     <div 
-      className="flex flex-col gap-2 mb-3 p-8 rounded-2xl relative"
+      className="flex flex-col gap-2 mb-3 p-8 rounded-2xl relative "
       style={{
         perspective: '1200px',
         background: 'linear-gradient(145deg, #1e2128, #17191f)',

@@ -66,10 +66,10 @@ export function KeyboardInput() {
   const getKeyClass = (key: string, state: 'correct' | 'present' | 'absent' | 'unused') => {
     const baseClass = 'rounded-xl font-black text-sm transition-all duration-200 cursor-pointer select-none flex items-center justify-center relative transform-gpu uppercase tracking-wider';
     
-    // Size classes
+    // Size classes - responsive
     const sizeClass = key === 'ENTER' || key === '←' 
-      ? 'px-5 h-14 text-xs' 
-      : 'w-11 h-14';
+      ? 'px-3 sm:px-4 md:px-5 h-12 sm:h-13 md:h-14 text-xs' 
+      : 'w-7 sm:w-10 md:w-11 h-12 sm:h-13 md:h-14';
     
     // Hyper-realistic neumorphic mechanical button styling
     let colorClass = '';
@@ -113,7 +113,7 @@ export function KeyboardInput() {
 
   return (
     <div 
-      className="w-full max-w-[550px] mt-3 p-6 rounded-2xl relative"
+      className="w-full max-w-[550px] mt-3 p-3 sm:p-4 md:p-6 rounded-2xl relative"
       style={{
         perspective: '1200px',
         background: 'linear-gradient(145deg, #1e2128, #17191f)',
@@ -132,11 +132,11 @@ export function KeyboardInput() {
         }}
       />
       
-      <div className="flex flex-col gap-2.5 relative z-10" style={{transformStyle: 'preserve-3d'}}>
+      <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5 relative z-10" style={{transformStyle: 'preserve-3d'}}>
         {KEYBOARD_ROWS.map((row, rowIndex) => (
           <div 
             key={rowIndex} 
-            className="flex justify-center gap-2"
+            className="flex justify-center gap-1 sm:gap-1.5 md:gap-2"
             style={{
               transform: `rotateX(${1.5 - rowIndex * 0.5}deg) translateZ(${rowIndex * 2}px)`,
               transformStyle: 'preserve-3d'
