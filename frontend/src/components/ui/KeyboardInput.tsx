@@ -69,7 +69,7 @@ export function KeyboardInput() {
     // Size classes
     const sizeClass = key === 'ENTER' || key === '←' 
       ? 'px-5 h-16 text-xs' 
-      : 'w-11 h-16';
+      : 'w-11 h-14';
     
     // Hyper-realistic neumorphic mechanical button styling
     let colorClass = '';
@@ -113,7 +113,7 @@ export function KeyboardInput() {
 
   return (
     <div 
-      className="w-full max-w-[550px] mt-6 p-6 rounded-2xl relative"
+      className="w-full max-w-[550px] mt-3 p-6 rounded-2xl relative"
       style={{
         perspective: '1200px',
         background: 'linear-gradient(145deg, #1e2128, #17191f)',
