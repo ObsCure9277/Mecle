@@ -72,9 +72,24 @@ export function SettingsModal() {
                         boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)'
                       }}
                     >
-                      <option value="daily">Daily - One puzzle per day</option>
-                      <option value="hourly">Hourly - New puzzle every hour</option>
-                      <option value="infinite">Infinite - Unlimited puzzles</option>
+                      <option 
+                        value="daily"
+                        className="bg-[#1a1d23] text-white py-2 font-bold"
+                      >
+                        Daily - One puzzle per day
+                      </option>
+                      <option 
+                        value="hourly"
+                        className="bg-[#1a1d23] text-white py-2 font-bold"
+                      >
+                        Hourly - New puzzle every hour
+                      </option>
+                      <option 
+                        value="infinite"
+                        className="bg-[#1a1d23] text-white py-2 font-bold"
+                      >
+                        Infinite - Unlimited puzzles
+                      </option>
                     </select>
                     <p className="text-xs text-gray-400">
                       {gameMode === 'daily' && 'Solve one puzzle per day, resets at midnight'}

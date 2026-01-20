@@ -4,6 +4,7 @@ import { FlipCard } from './components/ui/FlipCard';
 import { InfoModal } from './components/ui/InfoModal';
 import { StatsModal } from './components/ui/StatsModal';
 import { SettingsModal } from './components/ui/SettingsModal';
+import { GameModeIndicator } from './components/ui/GameModeIndicator';
 import { useGameStore } from './stores/gameStore';
 import './index.css';
 
@@ -50,6 +51,7 @@ function App() {
         
         {/* Info and Stats buttons in a row */}
         <div className="flex items-center justify-center gap-4 mt-8">
+          <GameModeIndicator />
           <InfoModal />
           <StatsModal />
           <SettingsModal />
