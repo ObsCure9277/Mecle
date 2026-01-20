@@ -1,20 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { KeyboardInput } from './components/ui/KeyboardInput';
 import { FlipCard } from './components/ui/FlipCard';
 import { InfoModal } from './components/ui/InfoModal';
 import { StatsModal } from './components/ui/StatsModal';
 import { SettingsModal } from './components/ui/SettingsModal';
 import { GameModeIndicator } from './components/ui/GameModeIndicator';
+import { LoadingScreen } from './components/ui/LoadingScreen';
 import { useGameStore } from './stores/gameStore';
 import './index.css';
 
 function App() {
   const fetchDailyWord = useGameStore(state => state.fetchDailyWord);
+  const targetWord = useGameStore(state => state.targetWord);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchDailyWord();
-    useGameStore.setState({ cameraMode: 'gameplay' });
+    const loadGame = async () => {
+      await fetchDailyWord();
+      useGameStore.setState({ cameraMode: 'gameplay' });
+      // Small delay to ensure smooth transition
+      setTimeout(() => setIsLoading(false), 3000);
+    };
+    
+    loadGame();
   }, [fetchDailyWord]);
+
+  // Show loading screen while fetching initial word
+  if (isLoading || !targetWord) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="max-w-[650px] mx-auto min-h-screen flex flex-col items-center justify-center relative px-4 sm:px-6">
