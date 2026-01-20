@@ -5,6 +5,7 @@ import { InfoModal } from './components/ui/InfoModal';
 import { StatsModal } from './components/ui/StatsModal';
 import { SettingsModal } from './components/ui/SettingsModal';
 import { GameModeIndicator } from './components/ui/GameModeIndicator';
+import { MoreModal } from './components/ui/MoreModal';
 import { LoadingScreen } from './components/ui/LoadingScreen';
 import { useGameStore } from './stores/gameStore';
 import './index.css';
@@ -69,6 +70,7 @@ function App() {
           <InfoModal />
           <StatsModal />
           <SettingsModal />
+          <MoreModal />
         </div>
       </header>
 
