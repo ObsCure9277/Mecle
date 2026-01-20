@@ -4,7 +4,11 @@ import { GameStatus } from './GameStatus';
 
 export function FlipCard() {
   const gameStatus = useGameStore(state => state.gameStatus);
+  const cardFlipped = useGameStore(state => state.cardFlipped);
   const isGameOver = gameStatus === 'won' || gameStatus === 'lost';
+  
+  // Show status side if game is over AND card is flipped
+  const showStatusSide = isGameOver && cardFlipped;
 
   return (
     <div 
@@ -18,7 +22,7 @@ export function FlipCard() {
         className="relative w-full transition-transform duration-700"
         style={{
           transformStyle: 'preserve-3d',
-          transform: isGameOver ? 'rotateY(180deg)' : 'rotateY(0deg)'
+          transform: showStatusSide ? 'rotateY(180deg)' : 'rotateY(0deg)'
         }}
       >
         {/* Front: Game Grid */}

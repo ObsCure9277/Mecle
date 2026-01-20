@@ -3,6 +3,7 @@ import { KeyboardInput } from './components/ui/KeyboardInput';
 import { FlipCard } from './components/ui/FlipCard';
 import { InfoModal } from './components/ui/InfoModal';
 import { StatsModal } from './components/ui/StatsModal';
+import { SettingsModal } from './components/ui/SettingsModal';
 import { useGameStore } from './stores/gameStore';
 import './index.css';
 
@@ -51,6 +52,7 @@ function App() {
         <div className="flex items-center justify-center gap-4 mt-8">
           <InfoModal />
           <StatsModal />
+          <SettingsModal />
         </div>
       </header>
 

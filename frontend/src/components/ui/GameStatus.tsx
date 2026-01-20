@@ -5,6 +5,18 @@ export function GameStatus() {
   const currentRow = useGameStore(state => state.currentRow);
   const targetWord = useGameStore(state => state.targetWord);
   const resetGame = useGameStore(state => state.resetGame);
+  const gameMode = useGameStore(state => state.gameMode);
+  const flipCard = useGameStore(state => state.flipCard);
+
+  const handleButtonClick = () => {
+    if (gameMode === 'infinite') {
+      // Infinite mode: always reset
+      resetGame();
+    } else {
+      // Daily/Hourly mode: flip the card back to show game grid
+      flipCard(false);
+    }
+  };
 
   // Only show when game is won or lost
   if (gameStatus !== 'won' && gameStatus !== 'lost') {
@@ -45,13 +57,13 @@ export function GameStatus() {
           </div>
 
           <button
-            onClick={resetGame}
+            onClick={handleButtonClick}
             className="w-full px-6 py-3 bg-[#538d4e] text-white rounded-lg font-bold hover:bg-[#6aaa64] transition-all duration-200 text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             style={{
               boxShadow: '0 4px 20px rgba(83, 141, 78, 0.4)'
             }}
           >
-            Play Again
+            {gameMode === 'infinite' ? 'Play Again' : 'View Game'}
           </button>
         </div>
       )}
@@ -76,13 +88,13 @@ export function GameStatus() {
           </div>
 
           <button
-            onClick={resetGame}
+            onClick={handleButtonClick}
             className="w-full px-6 py-3 bg-[#818384] text-white rounded-lg font-bold hover:bg-[#9a9b9b] transition-all duration-200 text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             style={{
               boxShadow: '0 4px 20px rgba(129, 131, 132, 0.3)'
             }}
           >
-            Try Again
+            {gameMode === 'infinite' ? 'Try Again' : 'View Game'}
           </button>
         </div>
       )}

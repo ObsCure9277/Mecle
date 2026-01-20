@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 export type LetterState = 'correct' | 'present' | 'absent' | 'empty';
+export type GameMode = 'daily' | 'hourly' | 'infinite';
 
 export interface TileData {
    letter: string;
@@ -15,6 +16,9 @@ export interface GameState {
    currentCol: number;
    gameStatus: 'playing' | 'won' | 'lost';
    cameraMode: 'orbit' | 'gameplay';
+   gameMode: GameMode;
+   gameCompletedAt: number | null; // Timestamp when game was completed
+   cardFlipped: boolean; // Controls whether the FlipCard shows status side
 
    // Actions
    addLetter: (letter: string) => void;
@@ -22,6 +26,8 @@ export interface GameState {
    submitGuess: () => Promise<void>;
    fetchDailyWord: () => Promise<void>;
    setCameraMode: (mode: 'orbit' | 'gameplay') => void;
+   setGameMode: (mode: GameMode) => void;
+   flipCard: (flipped: boolean) => void;
    resetGame: () => Promise<void>;
 }
 
@@ -72,6 +78,9 @@ export const useGameStore = create<GameState>((set, get) => ({
    currentCol: 0,
    gameStatus: 'playing',
    cameraMode: 'orbit',
+   gameMode: 'daily',
+   gameCompletedAt: null,
+   cardFlipped: true, // Start with card flipped to show status on game over
 
    addLetter: (letter: string) => {
       const { currentRow, currentCol, guesses, gameStatus } = get();
@@ -153,7 +162,9 @@ export const useGameStore = create<GameState>((set, get) => ({
             guesses: newGuesses,
             currentRow: isWin || isLastRow ? currentRow : currentRow + 1,
             currentCol: 0,
-            gameStatus: newStatus
+            gameStatus: newStatus,
+            gameCompletedAt: newStatus !== 'playing' ? Date.now() : null,
+            cardFlipped: newStatus !== 'playing' ? true : false
          });
 
       } catch (error) {
@@ -186,7 +197,9 @@ export const useGameStore = create<GameState>((set, get) => ({
             guesses: newGuesses,
             currentRow: isWin || isLastRow ? currentRow : currentRow + 1,
             currentCol: 0,
-            gameStatus: newStatus
+            gameStatus: newStatus,
+            gameCompletedAt: newStatus !== 'playing' ? Date.now() : null,
+            cardFlipped: newStatus !== 'playing' ? true : false
          });
       }
    },
@@ -214,6 +227,14 @@ export const useGameStore = create<GameState>((set, get) => ({
       set({ cameraMode: mode });
    },
 
+   setGameMode: (mode: GameMode) => {
+      set({ gameMode: mode });
+   },
+
+   flipCard: (flipped: boolean) => {
+      set({ cardFlipped: flipped });
+   },
+
    resetGame: async () => {
       // Fetch a new random word when resetting
       try {
@@ -226,7 +247,9 @@ export const useGameStore = create<GameState>((set, get) => ({
                currentRow: 0,
                currentCol: 0,
                gameStatus: 'playing',
-               cameraMode: 'gameplay'
+               cameraMode: 'gameplay',
+               gameCompletedAt: null,
+               cardFlipped: true
             });
          } else {
             throw new Error('Failed to fetch new word');
@@ -239,7 +262,9 @@ export const useGameStore = create<GameState>((set, get) => ({
             currentRow: 0,
             currentCol: 0,
             gameStatus: 'playing',
-            cameraMode: 'gameplay'
+            cameraMode: 'gameplay',
+            gameCompletedAt: null,
+            cardFlipped: true
          });
       }
    }

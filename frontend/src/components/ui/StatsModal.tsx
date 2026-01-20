@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useGameStore } from '../../stores/gameStore';
 
 interface GameStats {
   gamesPlayed: number;
@@ -17,6 +18,12 @@ export function StatsModal() {
     maxStreak: 0,
     guessDistribution: [0, 0, 0, 0, 0, 0]
   });
+  const [countdown, setCountdown] = useState('');
+  
+  const gameStatus = useGameStore(state => state.gameStatus);
+  const gameMode = useGameStore(state => state.gameMode);
+  const gameCompletedAt = useGameStore(state => state.gameCompletedAt);
+  const resetGame = useGameStore(state => state.resetGame);
 
   // Load stats from localStorage
   useEffect(() => {
@@ -25,6 +32,51 @@ export function StatsModal() {
       setStats(JSON.parse(savedStats));
     }
   }, [isOpen]); // Reload when modal opens
+
+  // Update countdown timer
+  useEffect(() => {
+    if (gameStatus === 'playing' || gameMode === 'infinite' || !gameCompletedAt) {
+      setCountdown('');
+      return;
+    }
+
+    const updateCountdown = () => {
+      const now = Date.now();
+      let targetTime: number;
+
+      if (gameMode === 'daily') {
+        // Countdown to midnight
+        const tomorrow = new Date();
+        tomorrow.setHours(24, 0, 0, 0);
+        targetTime = tomorrow.getTime();
+      } else if (gameMode === 'hourly') {
+        // Countdown to 1 hour after completion
+        targetTime = gameCompletedAt + (60 * 60 * 1000);
+      } else {
+        setCountdown('');
+        return;
+      }
+
+      const timeLeft = targetTime - now;
+      if (timeLeft <= 0) {
+        setCountdown('Resetting...');
+        // Auto-reset the game when countdown expires
+        resetGame();
+        return;
+      }
+
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      setCountdown(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, [gameStatus, gameMode, gameCompletedAt, resetGame]);
 
   const winPercentage = stats.gamesPlayed > 0 
     ? Math.round((stats.gamesWon / stats.gamesPlayed) * 100) 
@@ -131,6 +183,20 @@ export function StatsModal() {
                     })}
                   </div>
                 </div>
+
+                {/* Countdown Timer */}
+                {gameStatus !== 'playing' && (gameMode === 'daily' || gameMode === 'hourly') && (
+                  <div className="bg-black/30 rounded-lg p-3 border border-white/5 text-center">
+                    <div className="text-center space-y-2">
+                      <p className="text-xs font-bold text-white uppercase tracking-wider">
+                        Next {gameMode} Puzzle
+                      </p>
+                      <div className="text-3xl font-black text-white font-mono tracking-wider">
+                        {countdown || 'Loading...'}
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Info text */}
                 {stats.gamesPlayed === 0 && (
