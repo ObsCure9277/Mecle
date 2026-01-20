@@ -17,15 +17,23 @@ function App() {
   return (
     <div className="max-w-[650px] mx-auto min-h-screen flex flex-col items-center justify-center relative px-4 sm:px-6">
       {/* Header */}
-      <header className="mb-4 sm:mb-6 w-full mb-[20px] max-w-[550px]">
-        <div className="flex items-center justify-center relative">
-          {/* Info button on the left */}
-          <div className="absolute left-0">
-            <InfoModal />
-          </div>
-          
-          {/* Title in the center */}
-          <h1 className="text-2xl sm:text-4xl md:text-4xl font-black tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+      <header className="mb-4 sm:mb-6 w-full max-w-[550px]">
+        {/* Title in the center */}
+        <div className="flex items-center justify-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-wider" style={{
+            textShadow: `
+              0 1px 0 rgba(255,255,255,0.4),
+              0 2px 0 rgba(0,0,0,0.2),
+              0 3px 0 rgba(0,0,0,0.2),
+              0 4px 0 rgba(0,0,0,0.2),
+              0 5px 0 rgba(0,0,0,0.2),
+              0 6px 0 rgba(0,0,0,0.2),
+              0 7px 0 rgba(0,0,0,0.3),
+              0 8px 0 rgba(0,0,0,0.3),
+              0 9px 12px rgba(0,0,0,0.5),
+              0 12px 20px rgba(0,0,0,0.6)
+            `
+          }}>
             <span className="inline-block bg-gradient-to-br from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">M</span>
             <span className="inline-block bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">E</span>
             <span className="inline-block bg-gradient-to-br from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent">C</span>
@@ -37,11 +45,12 @@ function App() {
             <span className="inline-block bg-gradient-to-br from-lime-400 via-lime-500 to-lime-600 bg-clip-text text-transparent">P</span>
             <span className="inline-block bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-600 bg-clip-text text-transparent">T</span>
           </h1>
-
-          {/* Stats button on the right */}
-          <div className="absolute right-0">
-            <StatsModal />
-          </div>
+        </div>
+        
+        {/* Info and Stats buttons in a row */}
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <InfoModal />
+          <StatsModal />
         </div>
       </header>
 

@@ -8,7 +8,7 @@ export function FlipCard() {
 
   return (
     <div 
-      className="relative w-full mb-[10px] md:mb-0 max-w-[550px]"
+      className="relative w-full mb-[10px] md:mb-0 max-w-[380px]"
       style={{
         perspective: '2000px',
         minHeight: '400px'

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { FaDeleteLeft } from 'react-icons/fa6';
 import { useGameStore } from '../../stores/gameStore';
 
 const KEYBOARD_ROWS = [
@@ -68,8 +69,8 @@ export function KeyboardInput() {
     
     // Size classes - responsive
     const sizeClass = key === 'ENTER' || key === '←' 
-      ? 'px-3 sm:px-4 md:px-5 h-12 sm:h-13 md:h-14 text-xs' 
-      : 'w-7 sm:w-10 md:w-11 h-12 sm:h-13 md:h-14';
+      ? 'px-3 sm:px-4 h-10 sm:h-13 md:h-14 text-xs' 
+      : 'w-10 sm:w-10 md:w-11 h-10 sm:h-13 md:h-14';
     
     // Hyper-realistic neumorphic mechanical button styling
     let colorClass = '';
@@ -113,7 +114,7 @@ export function KeyboardInput() {
 
   return (
     <div 
-      className="w-full max-w-[550px] mt-3 p-3 sm:p-4 md:p-6 rounded-2xl relative"
+      className="w-full max-w-[380px] md:max-w-[550px] mt-3 p-3 sm:p-4 md:p-6 rounded-2xl relative"
       style={{
         perspective: '1200px',
         background: 'linear-gradient(145deg, #1e2128, #17191f)',
@@ -153,7 +154,7 @@ export function KeyboardInput() {
                   style={{transformStyle: 'preserve-3d'}}
                 >
                   <span className="relative z-10 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
-                    {key === '←' ? '⌫' : key}
+                    {key === '←' ? <FaDeleteLeft /> : key}
                   </span>
                 </button>
               );
