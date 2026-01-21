@@ -1,0 +1,35 @@
+{
+   "name": "Mechacrypt",
+   "short_name": "Mechacrypt",
+   "description": "A hyper-realistic 3D mechanical word-puzzle game. Tactile Logic. Precision Security.",
+   "start_url": "/",
+   "display": "standalone",
+   "background_color": "#0f172a",
+   "theme_color": "#1e293b",
+   "orientation": "portrait",
+   "icons": [
+      {
+         "src": "/mechacrypt_favicon.svg",
+         "sizes": "any",
+         "type": "image/svg+xml",
+         "purpose": "any maskable"
+      },
+      {
+         "src": "/og-image.png",
+         "sizes": "1200x630",
+         "type": "image/png",
+         "purpose": "any"
+      }
+   ],
+   "categories": [
+      "games",
+      "entertainment"
+   ],
+   "screenshots": [
+      {
+         "src": "/og-image.png",
+         "sizes": "1200x630",
+         "type": "image/png"
+      }
+   ]
+}
