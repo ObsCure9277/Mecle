@@ -4,36 +4,52 @@
 
 **Tactile Logic. Precision Security.**
 
-A hyper-realistic, 3D mechanical word-puzzle game that blends the logic of Wordle with a high-fidelity Neumorphic Mechanical aesthetic, optimized for performance using the Bun.js runtime.
+A 3D word-puzzle game inspired by Wordle, featuring smooth animations, flippable letter tiles with LED feedback indicators, and a vibrant colorful aesthetic.
 
-## 🎮 Features
+## ✨ Features
 
-- **3D Mechanical Console**: Procedurally generated brushed metal console with realistic lighting
-- **Dual-Sided Tiles**: Letter display on front, LED indicators on back (Green/Amber/Gray)
-- **Smooth Animations**: Spring-based mechanical rotation with GSAP camera transitions
-- **Neumorphic Design**: Soft-shadow lighting system creating tactile depth
-- **Daily Challenge**: Server-generated daily word puzzle
-- **Performance Optimized**: Powered by Bun.js for lightning-fast asset delivery
+- **3D Tile Grid**: Interactive 6×5 grid with flippable tiles
+- **Dual-Sided Tiles**: 
+  - **Front**: Letter display with metallic finish (gold for correct letters)
+  - **Back**: LED indicators (Green/Amber/Gray) with emissive glow
+- **Smooth Animations**: 
+  - Spring-based tile rotation using React Spring
+  - GSAP-powered camera transitions
+- **Game Modes**: Daily challenge with random word generation
+- **Statistics Tracking**: Win rate, streak tracking, and guess distribution
+- **Modular UI**: Info modal, stats modal, settings, and more
+- **Responsive Design**: Optimized for desktop and mobile
 
 ## 🚀 Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Runtime | Bun.js |
-| Frontend Framework | React + Vite + TypeScript |
-| 3D Engine | React Three Fiber (Three.js) |
-| Animation | GSAP + Framer Motion 3D |
-| Backend | Python 3.12 + FastAPI |
-| Styling | Tailwind CSS (Neumorphism) |
-| State Management | Zustand |
+### Frontend
+| Technology | Purpose |
+|-----------|---------|
+| **React 19** | UI framework |
+| **TypeScript** | Type safety |
+| **Vite** | Build tool and dev server |
+| **React Three Fiber** | 3D rendering (Three.js wrapper) |
+| **@react-three/drei** | 3D helpers (Text, RoundedBox, etc.) |
+| **React Spring** | Tile flip animations |
+| **GSAP** | Camera transitions |
+| **Zustand** | State management |
+| **Tailwind CSS** | Styling |
+| **React Icons** | UI icons |
+
+### Backend
+| Technology | Purpose |
+|-----------|---------|
+| **Python 3.12+** | Runtime |
+| **FastAPI** | REST API framework |
+| **Uvicorn** | ASGI server |
+| **python-dotenv** | Environment variables |
 
 ## 📦 Installation
 
 ### Prerequisites
-
-- **Bun.js** (installed automatically on first setup)
-- **Node.js** (for fallback npm operations)
-- **Python 3.12+**
+- **Node.js** 18+ and npm
+- **Python** 3.12+
+- **pip** (Python package manager)
 
 ### Frontend Setup
 
@@ -43,7 +59,7 @@ npm install
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173`
+The frontend will be available at **http://localhost:5173**
 
 ### Backend Setup
 
@@ -53,19 +69,21 @@ pip install -r requirements.txt
 python main.py
 ```
 
-The backend API will be available at `http://localhost:8000`
+The backend API will be available at **http://localhost:8000**
 
-## 🎯 How to Play
+> **Note**: Make sure to start the backend before using the frontend, otherwise the game will use fallback words.
 
-1. **Landing Page**: The mechanical console orbits slowly with the "SYSTEM_LOCKED" message
-2. **Engage**: Click `[ ENGAGE_MECHANISM ]` to zoom into gameplay mode
-3. **Type**: Enter 5-letter words using your keyboard (A-Z)
-4. **Submit**: Press ENTER to validate your guess
-5. **Observe**: Watch the tiles mechanically rotate to reveal LED feedback:
-   - 🟢 **Green**: Letter correct and in correct position
-   - 🟡 **Amber**: Letter in word but wrong position
-   - ⚫ **Gray**: Letter not in word
-6. **Win**: Guess the word in 6 attempts to decrypt the vault!
+## 🎮 How to Play
+
+1. **Start**: The game loads with an empty 6×5 grid
+2. **Type**: Enter a 5-letter word using your keyboard (A-Z)
+3. **Submit**: Press **ENTER** to validate your guess
+4. **Watch**: Tiles flip to reveal LED feedback on the back:
+   - 🟢 **Green LED**: Letter is correct and in the right position
+   - 🟡 **Amber LED**: Letter is in the word but wrong position
+   - ⚫ **Gray LED**: Letter is not in the word
+5. **Win**: Guess the word in 6 attempts or less!
+6. **Track**: View your statistics and play again
 
 ## 📁 Project Structure
 
@@ -74,49 +92,124 @@ mechacrypt/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── 3d/           # Three.js/R3F components
-│   │   │   └── ui/           # React UI overlays
-│   │   ├── stores/           # Zustand state
-│   │   ├── styles/           # CSS
-│   │   └── App.tsx
-│   └── package.json
+│   │   │   ├── 3d/              # Three.js components
+│   │   │   │   ├── Tile.tsx            # 3D flippable tile
+│   │   │   │   ├── TileRow.tsx         # Row of tiles
+│   │   │   │   ├── GameGrid.tsx        # Full grid
+│   │   │   │   └── CameraController.tsx # GSAP camera
+│   │   │   └── ui/              # React UI components
+│   │   │       ├── FlipCard.tsx        # Game/Status card
+│   │   │       ├── KeyboardInput.tsx   # Virtual keyboard
+│   │   │       ├── InfoModal.tsx       # How to play
+│   │   │       ├── StatsModal.tsx      # Statistics
+│   │   │       ├── SettingsModal.tsx   # Settings
+│   │   │       ├── MoreModal.tsx       # About/Links
+│   │   │       └── LoadingScreen.tsx   # Initial loader
+│   │   ├── stores/
+│   │   │   └── gameStore.ts     # Zustand state management
+│   │   ├── index.css            # Global styles
+│   │   ├── App.tsx              # Main app component
+│   │   └── main.tsx             # Entry point
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── tailwind.config.js
 └── backend/
-    ├── main.py               # FastAPI server
-    └── requirements.txt
+    ├── main.py                  # FastAPI server
+    ├── words.py                 # Word list
+    ├── requirements.txt         # Python dependencies
+    └── .env                     # Environment variables
 ```
 
-## 🎨 Design Philosophy
+## 🎨 Design Details
 
-Mechacrypt uses **Neumorphic Design** principles:
+### Visual Style
+- **Colorful Title**: Each letter has a unique gradient color (red, yellow, green, blue, purple, pink, cyan, orange, lime, indigo)
+- **3D Tiles**: Rounded box geometry with metallic materials
+- **LED Feedback**: Emissive materials with point lights for realistic glow
+- **Responsive Layout**: Max-width 650px, centered layout with proper spacing
 
-- **Surface**: Matte brushed aluminum (#E0E0E0 light / #1A1A1A dark)
-- **Lighting**: Dual-source (top-left highlights + bottom-right shadows)
-- **Depth**: Extruded 3D tiles set into sunken tracks
-- **Feedback**: Emissive LED materials with realistic glow
+### Animation Details
+- **Tile Flip**: 180° rotation on Y-axis with spring physics (tension: 120, friction: 14)
+- **Camera Transition**: GSAP tween with `power2.inOut` easing over 2 seconds
+- **Loading Screen**: 3-second initial delay for smooth entry
 
 ## 🔧 Development
 
 ### Available Scripts
 
 **Frontend:**
-- `npm run dev` - Start Vite dev server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+```bash
+npm run dev      # Start Vite dev server (port 5173)
+npm run build    # Build for production
+npm run lint     # Run ESLint
+npm run preview  # Preview production build
+```
 
 **Backend:**
-- `python main.py` - Start FastAPI server
-- `uvicorn main:app --reload` - Start with hot reload
+```bash
+python main.py                    # Start server (port 8000)
+uvicorn main:app --reload        # Start with hot reload
+```
 
 ## 🌐 API Endpoints
 
-- `GET /` - API health check
-- `GET /daily-word` - Get today's puzzle word
-- `POST /validate` - Validate a guess
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/` | API health check |
+| `GET` | `/daily-word` | Get today's word (date-seeded) |
+| `GET` | `/random-word` | Get a random word |
+| `POST` | `/validate` | Validate a guess against target word |
+
+### Example API Usage
+
+**Get Random Word:**
+```bash
+curl http://localhost:8000/random-word
+# Response: {"word": "CRYPT"}
+```
+
+**Validate Guess:**
+```bash
+curl -X POST http://localhost:8000/validate \
+  -H "Content-Type: application/json" \
+  -d '{"guess": "CRYPT", "target": "CRANE"}'
+# Response: {"states": ["correct", "correct", "absent", "absent", "absent"]}
+```
+
+## 🎯 Game Logic
+
+The validation algorithm uses a two-pass approach:
+1. **First pass**: Mark exact matches (correct position) as `correct`
+2. **Second pass**: Mark present letters (wrong position) as `present`, remaining as `absent`
+
+This ensures proper handling of duplicate letters.
+
+## 📊 Statistics
+
+Game statistics are stored in `localStorage`:
+- Games played
+- Games won
+- Current streak
+- Max streak
+- Guess distribution (1-6 guesses)
+
+## 🔄 Environment Variables
+
+**Frontend** (`.env` in `/frontend`):
+```bash
+VITE_BACKEND_URL=http://localhost:8000
+```
+
+**Backend** (`.env` in `/backend`):
+```bash
+BACKEND_URL=http://localhost:8000
+FRONTEND_URL=http://localhost:5173
+```
 
 ## 📝 License
 
-MIT License. Developed for the next generation of spatial web.
+MIT License. Developed by **NG SHEN ZHI**.
 
 ---
 
-**Mechacrypt v1.0** // Precision Decryption. Physically Realized.
+**Mechacrypt v1.0** // Word Puzzle Meets 3D Mechanics
