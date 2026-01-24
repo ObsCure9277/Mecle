@@ -1,4 +1,5 @@
 import { useGameStore } from '../../stores/gameStore';
+import { useState, useEffect } from 'react';
 
 export function GameStatus() {
   const gameStatus = useGameStore(state => state.gameStatus);
@@ -8,6 +9,7 @@ export function GameStatus() {
   const gameMode = useGameStore(state => state.gameMode);
   const flipCard = useGameStore(state => state.flipCard);
 
+  // Restore handleButtonClick
   const handleButtonClick = () => {
     if (gameMode === 'infinite') {
       // Infinite mode: always reset
@@ -18,10 +20,41 @@ export function GameStatus() {
     }
   };
 
-  // Only show when game is won or lost
-  if (gameStatus !== 'won' && gameStatus !== 'lost') {
-    return null;
-  }
+  // Timer logic
+  const [timeLeft, setTimeLeft] = useState<string>('');
+  
+  // Update countdown
+  useEffect(() => {
+    if ((gameMode === 'daily' || gameMode === 'hourly') && (gameStatus === 'won' || gameStatus === 'lost')) {
+      const updateTimer = () => {
+        const remaining = useGameStore.getState().getTimeRemaining();
+        
+        if (!remaining || remaining <= 0) {
+            setTimeLeft('');
+            return;
+        }
+
+        const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((remaining / (1000 * 60)) % 60);
+        const seconds = Math.floor((remaining / 1000) % 60);
+
+        const pad = (n: number) => n.toString().padStart(2, '0');
+        setTimeLeft(`${pad(hours)}:${pad(minutes)}:${pad(seconds)}`);
+      };
+
+      updateTimer();
+      const interval = setInterval(updateTimer, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [gameMode, gameStatus]);
+
+  const getButtonText = () => {
+      if (gameMode === 'infinite') return gameStatus === 'won' ? 'Play Again' : 'Try Again';
+      if (timeLeft) return `Next Game In: ${timeLeft}`;
+      return 'Play Again'; // Fallback if unlocked
+  };
+
+  const isLocked = (gameMode === 'daily' || gameMode === 'hourly') && !!timeLeft;
 
   return (
     <div 
@@ -57,13 +90,18 @@ export function GameStatus() {
           </div>
 
           <button
-            onClick={handleButtonClick}
-            className="w-full px-6 py-[1.5vh] md:py-3 bg-[#538d4e] text-white rounded-lg font-bold hover:bg-[#6aaa64] transition-all duration-200 text-[2vh] md:text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+            onClick={isLocked ? undefined : handleButtonClick}
+            disabled={isLocked}
+            className={`w-full px-6 py-[1.5vh] md:py-3 rounded-lg font-bold transition-all duration-200 text-[2vh] md:text-lg shadow-lg 
+                ${isLocked 
+                    ? 'bg-gray-700 text-gray-400 cursor-not-allowed opacity-80' 
+                    : 'bg-[#538d4e] text-white hover:bg-[#6aaa64] hover:shadow-xl hover:scale-105 active:scale-95'
+                }`}
             style={{
-              boxShadow: '0 4px 20px rgba(83, 141, 78, 0.4)'
+              boxShadow: isLocked ? 'none' : '0 4px 20px rgba(83, 141, 78, 0.4)'
             }}
           >
-            {gameMode === 'infinite' ? 'Play Again' : 'View Game'}
+            {getButtonText()}
           </button>
         </div>
       )}
@@ -88,13 +126,18 @@ export function GameStatus() {
           </div>
 
           <button
-            onClick={handleButtonClick}
-            className="w-full px-6 py-[1.5vh] md:py-3 bg-[#818384] text-white rounded-lg font-bold hover:bg-[#9a9b9b] transition-all duration-200 text-[2vh] md:text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+             onClick={isLocked ? undefined : handleButtonClick}
+             disabled={isLocked}
+             className={`w-full px-6 py-[1.5vh] md:py-3 rounded-lg font-bold transition-all duration-200 text-[2vh] md:text-lg shadow-lg 
+                 ${isLocked 
+                     ? 'bg-gray-700 text-gray-400 cursor-not-allowed opacity-80' 
+                     : 'bg-[#818384] text-white hover:bg-[#9a9b9b] hover:shadow-xl hover:scale-105 active:scale-95'
+                 }`}
             style={{
-              boxShadow: '0 4px 20px rgba(129, 131, 132, 0.3)'
+              boxShadow: isLocked ? 'none' : '0 4px 20px rgba(129, 131, 132, 0.3)'
             }}
           >
-            {gameMode === 'infinite' ? 'Try Again' : 'View Game'}
+             {getButtonText()}
           </button>
         </div>
       )}
