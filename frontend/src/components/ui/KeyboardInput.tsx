@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { FaDeleteLeft } from 'react-icons/fa6';
 import { useGameStore } from '../../stores/gameStore';
+import pressSoundUrl from '../../assets/press.mp3';
 
 const KEYBOARD_ROWS = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -32,8 +33,16 @@ export function KeyboardInput() {
     return state;
   };
 
+  const playPressSound = () => {
+    const audio = new Audio(pressSoundUrl);
+    audio.volume = 0.5;
+    audio.play().catch(e => console.error('Audio play failed:', e));
+  };
+
   const handleKeyClick = (key: string) => {
     if (gameStatus !== 'playing') return;
+
+    playPressSound();
 
     if (key === 'ENTER') {
       submitGuess();
@@ -52,10 +61,13 @@ export function KeyboardInput() {
       const key = e.key.toUpperCase();
 
       if (key.length === 1 && key >= 'A' && key <= 'Z') {
+        playPressSound();
         addLetter(key);
       } else if (e.key === 'Backspace') {
+        playPressSound();
         deleteLetter();
       } else if (e.key === 'Enter') {
+        playPressSound();
         submitGuess();
       }
     };
