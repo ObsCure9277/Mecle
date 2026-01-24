@@ -48,9 +48,9 @@ function App() {
         Skip to main content
       </a>
 
-      <div className="max-w-[650px] mx-auto min-h-screen flex flex-col items-center justify-center relative px-4 sm:px-6">
+      <div className="w-full max-w-[500px] md:max-w-[650px] mx-auto h-[100dvh] md:h-auto md:min-h-screen overflow-hidden md:overflow-visible flex flex-col items-center justify-between md:justify-center relative px-2 py-2 md:px-6 md:py-6 safe-area-inset-bottom">
         {/* Header */}
-        <header className="mb-4 sm:mb-6 w-full max-w-[550px]" role="banner">
+        <header className="w-full flex-none pt-2 md:pt-0 mb-2 md:mb-6 md:max-w-[550px]" role="banner">
           {/* Title in the center */}
           <div className="flex items-center justify-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-wider" style={{
@@ -81,7 +81,7 @@ function App() {
           </div>
           
           {/* Info and Stats buttons in a row */}
-          <nav className="flex items-center justify-center gap-4 mt-8" aria-label="Game controls">
+          <nav className="flex items-center justify-center gap-4 mt-2 md:mt-8" aria-label="Game controls">
             <GameModeIndicator />
             <InfoModal />
             <StatsModal />
@@ -102,7 +102,7 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="mt-4 sm:mt-6 text-center text-xs text-gray-500" role="contentinfo">
+        <footer className="mt-1 md:mt-6 text-center text-[10px] md:text-xs text-gray-500 flex-none pb-1 md:pb-0" role="contentinfo">
           <p className="font-mono tracking-wider">MECHACRYPT • MECHANICAL SYSTEMS ACTIVE</p>
         </footer>
       </div>

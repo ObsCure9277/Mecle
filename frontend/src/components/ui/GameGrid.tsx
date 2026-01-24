@@ -10,7 +10,8 @@ export function GameGrid() {
     const isCurrentTile = rowIndex === currentRow && colIndex === currentCol;
     
     // Base neumorphic mechanical tile
-    let classes = 'w-16 h-16 flex items-center justify-center text-2xl font-black uppercase transition-all duration-300 relative rounded-lg';
+    // Mobile: min(13vw, 7.5vh) for safe fit. Desktop: fixed 64px (w-16)
+    let classes = 'w-[min(13vw,7.5vh)] md:w-16 max-w-[64px] aspect-square flex items-center justify-center text-[min(6vw,3.5vh)] sm:text-2xl md:text-2xl font-black uppercase transition-all duration-300 relative rounded-md sm:rounded-lg';
     
     // Neumorphic 3D effect with realistic lighting
     classes += ' transform-gpu';
@@ -68,7 +69,7 @@ export function GameGrid() {
 
   return (
     <div 
-      className="flex flex-col gap-2 mb-3 p-2 rounded-2xl relative "
+      className="flex flex-col gap-[1.5vh] md:gap-2 mb-[1vh] md:mb-3 p-[1vh] md:p-2 rounded-xl sm:rounded-2xl relative w-full items-center"
       style={{
         perspective: '1200px',
         background: 'linear-gradient(145deg, #1e2128, #17191f)',
@@ -90,7 +91,7 @@ export function GameGrid() {
       {guesses.map((row, rowIndex) => (
         <div 
           key={rowIndex} 
-          className="flex gap-2 justify-center"
+          className="flex gap-[2vw] md:gap-2 justify-center w-full"
           style={{transformStyle: 'preserve-3d'}}
         >
           {row.map((tile, colIndex) => (

@@ -67,10 +67,10 @@ export function KeyboardInput() {
   const getKeyClass = (key: string, state: 'correct' | 'present' | 'absent' | 'unused') => {
     const baseClass = 'rounded-xl font-black text-sm transition-all duration-200 cursor-pointer select-none flex items-center justify-center relative transform-gpu uppercase tracking-wider';
     
-    // Size classes - responsive
+    // Size classes - responsive vs fixed desktop
     const sizeClass = key === 'ENTER' || key === '←' 
-      ? 'px-3 sm:px-4 h-10 sm:h-13 md:h-14 text-xs' 
-      : 'w-10 sm:w-10 md:w-11 h-10 sm:h-13 md:h-14';
+      ? 'px-[1vw] md:px-4 h-[6vh] md:h-14 max-h-[56px] text-[2.5vw] sm:text-xs md:text-xs flex-[1.5] md:flex-none' 
+      : 'flex-1 md:flex-none md:w-10 h-[6vh] md:h-14 max-h-[56px] max-w-[48px] md:max-w-none text-[3.5vw] sm:text-sm';
     
     // Hyper-realistic neumorphic mechanical button styling
     let colorClass = '';
@@ -137,7 +137,7 @@ export function KeyboardInput() {
         {KEYBOARD_ROWS.map((row, rowIndex) => (
           <div 
             key={rowIndex} 
-            className="flex justify-center gap-1 sm:gap-1.5 md:gap-2"
+            className="flex justify-center w-full md:w-auto gap-[1vw] md:gap-2 px-[1vw] md:px-0"
             style={{
               transform: `rotateX(${1.5 - rowIndex * 0.5}deg) translateZ(${rowIndex * 2}px)`,
               transformStyle: 'preserve-3d'
