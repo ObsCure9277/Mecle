@@ -262,23 +262,28 @@ export const useGameStore = create<GameState>((set, get) => ({
       const state = get();
       const { gameMode } = state;
 
-      // 1. Save current state to its specific storage before switching
-      const currentStateToSave: GameModeState = {
-         guesses: state.guesses,
-         currentRow: state.currentRow,
-         currentCol: state.currentCol,
-         gameStatus: state.gameStatus,
-         gameCompletedAt: state.gameCompletedAt,
-         targetWord: state.targetWord,
-         cardFlipped: state.cardFlipped
-      };
+      // 1. Save current state to its specific storage BEFORE switching
+      // IMPORTANT: Only save if we are actually switching modes.
+      // If we are just re-initializing the current mode (e.g. on page load),
+      // we should NOT save the current (likely empty/transient) state over the persisted one.
+      if (newMode !== gameMode) {
+         const currentStateToSave: GameModeState = {
+            guesses: state.guesses,
+            currentRow: state.currentRow,
+            currentCol: state.currentCol,
+            gameStatus: state.gameStatus,
+            gameCompletedAt: state.gameCompletedAt,
+            targetWord: state.targetWord,
+            cardFlipped: state.cardFlipped
+         };
 
-      if (gameMode === 'daily') {
-         set({ dailyState: currentStateToSave });
-         persistState('daily', currentStateToSave);
-      } else if (gameMode === 'hourly') {
-         set({ hourlyState: currentStateToSave });
-         persistState('hourly', currentStateToSave);
+         if (gameMode === 'daily') {
+            set({ dailyState: currentStateToSave });
+            persistState('daily', currentStateToSave);
+         } else if (gameMode === 'hourly') {
+            set({ hourlyState: currentStateToSave });
+            persistState('hourly', currentStateToSave);
+         }
       }
 
       // 2. Load the new mode's state
