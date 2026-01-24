@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { FaGear } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 import { useGameStore, type GameMode } from '../../stores/gameStore';
 
 export function SettingsModal() {
   const [isOpen, setIsOpen] = useState(false);
   const gameMode = useGameStore(state => state.gameMode);
-  const setGameMode = useGameStore(state => state.setGameMode);
+  const navigate = useNavigate();
 
   const handleModeChange = (mode: GameMode) => {
-    setGameMode(mode);
-    
-    // Always reset the game when changing modes to clear countdown and start fresh
-    useGameStore.getState().resetGame();
+    navigate(`/${mode}`);
   };
 
   return (
