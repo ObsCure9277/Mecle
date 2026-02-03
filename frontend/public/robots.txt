@@ -1,8 +1,26 @@
+# Mechacrypt - 3D Wordle Alternative | Daily Word Puzzle Game
+# Welcome search engine crawlers!
+
 User-agent: *
 Allow: /
+Allow: /og-image.png
+Allow: /manifest.json
+
+# Disallow unnecessary files
+Disallow: /src/
+Disallow: /*.json$
 
 # Sitemap location
 Sitemap: https://mechacrypt.vercel.app/sitemap.xml
 
-# Crawl-delay (optional, helps prevent server overload)
+# Crawl-delay for polite crawling
 Crawl-delay: 1
+
+# Specific directives for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Keywords: wordle alternative, wordle like game, 3d wordle, daily word puzzle

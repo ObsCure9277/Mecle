@@ -1,0 +1,107 @@
+{
+   "@context": "https://schema.org",
+   "@type": "ComparisonTable",
+   "name": "Mechacrypt vs Wordle Comparison",
+   "description": "Feature comparison between Mechacrypt and Wordle - See why Mechacrypt is the ultimate 3D Wordle alternative",
+   "about": {
+      "@type": "Thing",
+      "name": "Word Puzzle Games Comparison"
+   },
+   "comparisonItems": [
+      {
+         "feature": "Graphics",
+         "mechacrypt": "Hyper-realistic 3D graphics with mechanical aesthetics",
+         "wordle": "Simple 2D grid interface",
+         "advantage": "Mechacrypt"
+      },
+      {
+         "feature": "Visual Feedback",
+         "mechacrypt": "Colorful LED tiles with tactile animations",
+         "wordle": "Basic color blocks (green, yellow, gray)",
+         "advantage": "Mechacrypt"
+      },
+      {
+         "feature": "Daily Puzzles",
+         "mechacrypt": "Yes - New 5-letter word every day",
+         "wordle": "Yes - New 5-letter word every day",
+         "advantage": "Tie"
+      },
+      {
+         "feature": "Cost",
+         "mechacrypt": "100% Free - No ads, no subscriptions",
+         "wordle": "Free",
+         "advantage": "Tie"
+      },
+      {
+         "feature": "Platform",
+         "mechacrypt": "Web browser - No download required",
+         "wordle": "Web browser - No download required",
+         "advantage": "Tie"
+      },
+      {
+         "feature": "Theme",
+         "mechacrypt": "Immersive vault-cracking experience",
+         "wordle": "Minimalist word game",
+         "advantage": "Mechacrypt"
+      },
+      {
+         "feature": "Animations",
+         "mechacrypt": "Smooth 3D tile rotations and LED effects",
+         "wordle": "Simple tile flips",
+         "advantage": "Mechacrypt"
+      },
+      {
+         "feature": "Gameplay",
+         "mechacrypt": "6 attempts to guess 5-letter word",
+         "wordle": "6 attempts to guess 5-letter word",
+         "advantage": "Tie"
+      }
+   ],
+   "keywords": [
+      "wordle alternative",
+      "wordle vs mechacrypt",
+      "games like wordle",
+      "3d wordle",
+      "wordle with graphics",
+      "better than wordle",
+      "wordle comparison",
+      "best wordle alternatives"
+   ],
+   "uniqueSellingPoints": [
+      "Stunning 3D graphics that bring word puzzles to life",
+      "Mechanical vault theme with tactile LED feedback",
+      "Immersive audio and visual effects",
+      "Premium gaming experience while staying free",
+      "Perfect for Wordle fans seeking enhanced visuals",
+      "Same addictive gameplay with next-level presentation"
+   ],
+   "targetAudience": [
+      "Wordle enthusiasts",
+      "Word puzzle lovers",
+      "Casual gamers",
+      "Daily puzzle solvers",
+      "Players seeking visual upgrades to Wordle",
+      "Fans of mechanical aesthetics"
+   ],
+   "seo": {
+      "primaryKeywords": [
+         "wordle alternative",
+         "3d wordle",
+         "games like wordle",
+         "wordle with graphics"
+      ],
+      "secondaryKeywords": [
+         "daily word puzzle",
+         "free wordle game",
+         "wordle style game",
+         "word guessing game",
+         "mechanical word puzzle"
+      ],
+      "longTailKeywords": [
+         "wordle but with 3d graphics",
+         "free wordle alternative with better graphics",
+         "daily 5 letter word puzzle like wordle",
+         "wordle game with animations"
+      ]
+   }
+}
