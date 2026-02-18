@@ -1,6 +1,5 @@
 # Mechacrypt
 
-![Mechacrypt Banner](https://img.shields.io/badge/MECHACRYPT-v1.0-blue?style=for-the-badge)
 
 **Tactile Logic. Precision Security.**
 
@@ -18,7 +17,7 @@ A hyper-realistic 3D word-puzzle game inspired by Wordle, featuring smooth mecha
 - [🚀 Getting Started](#-getting-started)
 - [📂 Project Structure](#-project-structure)
 - [🎨 Design Details](#-design-details)
-- [🌐 API Endpoints](#-api-endpoints)
+- [💡 API Endpoints](#-api-endpoints)
 - [🔧 Development](#-development)
 - [🌐 Browser Support](#-browser-support)
 - [📄 License](#-license)
