@@ -89,7 +89,7 @@ A hyper-realistic 3D word-puzzle game inspired by Wordle, featuring smooth mecha
     </td>
   </tr>
   <tr>
-    <td><b>State & Icons</b></td>
+    <td><b>State Management</b></td>
     <td>
       <img src="https://img.shields.io/badge/Zustand-443E38?style=for-the-badge" />
     </td>
