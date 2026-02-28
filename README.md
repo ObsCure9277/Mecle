@@ -1,11 +1,11 @@
-# Mechacrypt
+# Mecle
 
 
 **Tactile Logic. Precision Security.**
 
 A hyper-realistic 3D word-puzzle game inspired by Wordle, featuring smooth mechanical animations, flippable letter tiles with LED feedback indicators, and a vibrant colorful aesthetic. Built with React Three Fiber and FastAPI.
 
-[Live Preview](#) &cdot; [Report Bug](https://github.com/ObsCure9277/Mechacrypt/issues) &cdot; [Request Feature](https://github.com/ObsCure9277/Mechacrypt/issues)
+[Live Preview](#) &cdot; [Report Bug](https://github.com/ObsCure9277/MECLE/issues) &cdot; [Request Feature](https://github.com/ObsCure9277/MECLE/issues)
 
 ---
 
