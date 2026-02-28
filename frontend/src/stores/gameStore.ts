@@ -85,9 +85,9 @@ const getTimeUntilNext = (mode: GameMode, lastCompleted: number): number | null 
 
 // Persistence Keys
 const STORAGE_KEYS = {
-   daily: 'mechacrypt-daily-state',
-   hourly: 'mechacrypt-hourly-state',
-   stats: 'mechacrypt-stats'
+   daily: 'MECLE-daily-state',
+   hourly: 'MECLE-hourly-state',
+   stats: 'MECLE-stats'
 };
 
 // Load initial state from local storage

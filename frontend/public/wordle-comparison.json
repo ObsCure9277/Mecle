@@ -1,8 +1,8 @@
 {
    "@context": "https://schema.org",
    "@type": "ComparisonTable",
-   "name": "Mechacrypt vs Wordle Comparison",
-   "description": "Feature comparison between Mechacrypt and Wordle - See why Mechacrypt is the ultimate 3D Wordle alternative",
+   "name": "MECLE vs Wordle Comparison",
+   "description": "Feature comparison between MECLE and Wordle - See why MECLE is the ultimate 3D Wordle alternative",
    "about": {
       "@type": "Thing",
       "name": "Word Puzzle Games Comparison"
@@ -10,56 +10,56 @@
    "comparisonItems": [
       {
          "feature": "Graphics",
-         "mechacrypt": "Hyper-realistic 3D graphics with mechanical aesthetics",
+         "MECLE": "Hyper-realistic 3D graphics with mechanical aesthetics",
          "wordle": "Simple 2D grid interface",
-         "advantage": "Mechacrypt"
+         "advantage": "MECLE"
       },
       {
          "feature": "Visual Feedback",
-         "mechacrypt": "Colorful LED tiles with tactile animations",
+         "MECLE": "Colorful LED tiles with tactile animations",
          "wordle": "Basic color blocks (green, yellow, gray)",
-         "advantage": "Mechacrypt"
+         "advantage": "MECLE"
       },
       {
          "feature": "Daily Puzzles",
-         "mechacrypt": "Yes - New 5-letter word every day",
+         "MECLE": "Yes - New 5-letter word every day",
          "wordle": "Yes - New 5-letter word every day",
          "advantage": "Tie"
       },
       {
          "feature": "Cost",
-         "mechacrypt": "100% Free - No ads, no subscriptions",
+         "MECLE": "100% Free - No ads, no subscriptions",
          "wordle": "Free",
          "advantage": "Tie"
       },
       {
          "feature": "Platform",
-         "mechacrypt": "Web browser - No download required",
+         "MECLE": "Web browser - No download required",
          "wordle": "Web browser - No download required",
          "advantage": "Tie"
       },
       {
          "feature": "Theme",
-         "mechacrypt": "Immersive vault-cracking experience",
+         "MECLE": "Immersive vault-cracking experience",
          "wordle": "Minimalist word game",
-         "advantage": "Mechacrypt"
+         "advantage": "MECLE"
       },
       {
          "feature": "Animations",
-         "mechacrypt": "Smooth 3D tile rotations and LED effects",
+         "MECLE": "Smooth 3D tile rotations and LED effects",
          "wordle": "Simple tile flips",
-         "advantage": "Mechacrypt"
+         "advantage": "MECLE"
       },
       {
          "feature": "Gameplay",
-         "mechacrypt": "6 attempts to guess 5-letter word",
+         "MECLE": "6 attempts to guess 5-letter word",
          "wordle": "6 attempts to guess 5-letter word",
          "advantage": "Tie"
       }
    ],
    "keywords": [
       "wordle alternative",
-      "wordle vs mechacrypt",
+      "wordle vs MECLE",
       "games like wordle",
       "3d wordle",
       "wordle with graphics",

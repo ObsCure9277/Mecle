@@ -60,9 +60,9 @@ export function Game({ mode }: GameProps) {
   return (
     <>
       <Helmet>
-        <title>Mechacrypt - 3D Mechanical Word Puzzle Game | Daily Brain Challenge</title>
-        <meta name="description" content="Play Mechacrypt, a stunning 3D mechanical word puzzle game. Solve daily 5-letter encryptions with tactile LED feedback. Free brain-teasing fun!" />
-        <link rel="canonical" href="https://mechacrypt.vercel.app/" />
+        <title>MECLE - 3D Mechanical Word Puzzle Game | Daily Brain Challenge</title>
+        <meta name="description" content="Play MECLE, a stunning 3D mechanical word puzzle game. Solve daily 5-letter encryptions with tactile LED feedback. Free brain-teasing fun!" />
+        <link rel="canonical" href="https://MECLE.vercel.app/" />
       </Helmet>
 
       {/* Skip to main content for accessibility */}
@@ -128,7 +128,7 @@ export function Game({ mode }: GameProps) {
 
         {/* Footer */}
         <footer className="mt-1 md:mt-6 text-center text-[10px] md:text-xs text-gray-500 flex-none pb-1 md:pb-0" role="contentinfo">
-          <p className="font-mono tracking-wider">MECHACRYPT • MECHANICAL SYSTEMS ACTIVE</p>
+          <p className="font-mono tracking-wider">MECLE • MECHANICAL SYSTEMS ACTIVE</p>
         </footer>
       </div>
     </>

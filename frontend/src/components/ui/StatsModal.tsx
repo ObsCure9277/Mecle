@@ -27,7 +27,7 @@ export function StatsModal() {
 
   // Load stats from localStorage
   useEffect(() => {
-    const savedStats = localStorage.getItem('mechacrypt-stats');
+    const savedStats = localStorage.getItem('MECLE-stats');
     if (savedStats) {
       setStats(JSON.parse(savedStats));
     }

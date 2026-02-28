@@ -14,7 +14,7 @@ BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 app = FastAPI(
-    title="Mechacrypt API",
+    title="MECLE API",
     servers=[
         {"url": BACKEND_URL, "description": "Production environment"},
         {"url": "http://localhost:8000", "description": "Local environment"}
@@ -60,7 +60,7 @@ def get_random_word() -> str:
 
 @app.get("/")
 async def root():
-    return {"message": "Mechacrypt API v1.0", "status": "active"}
+    return {"message": "MECLE API v1.0", "status": "active"}
 
 @app.get("/daily-word", response_model=DailyWordResponse)
 async def daily_word():

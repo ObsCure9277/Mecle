@@ -1,11 +1,11 @@
-# Mechacrypt
+# MECLE
 
 
 **Tactile Logic. Precision Security.**
 
 A hyper-realistic 3D word-puzzle game inspired by Wordle, featuring smooth mechanical animations, flippable letter tiles with LED feedback indicators, and a vibrant colorful aesthetic. Built with React Three Fiber and FastAPI.
 
-[Live Preview](#) &cdot; [Report Bug](https://github.com/ObsCure9277/Mechacrypt/issues) &cdot; [Request Feature](https://github.com/ObsCure9277/Mechacrypt/issues)
+[Live Preview](#) &cdot; [Report Bug](https://github.com/ObsCure9277/MECLE/issues) &cdot; [Request Feature](https://github.com/ObsCure9277/MECLE/issues)
 
 ---
 
@@ -110,8 +110,8 @@ A hyper-realistic 3D word-puzzle game inspired by Wordle, featuring smooth mecha
 
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/ObsCure9277/Mechacrypt.git
-cd Mechacrypt
+git clone https://github.com/ObsCure9277/MECLE.git
+cd MECLE
 ```
 
 #### 2. Backend Setup
@@ -144,7 +144,7 @@ npm run dev
 ## 📂 Project Structure
 
 ```
-mechacrypt/
+MECLE/
 ├── frontend/                # React + Vite application
 │   ├── src/
 │   │   ├── components/
@@ -214,7 +214,7 @@ FRONTEND_URL=http://localhost:5173
 
 ## 🌐 Browser Support
 
-Mechacrypt requires a browser with **WebGL** support for 3D rendering.
+MECLE requires a browser with **WebGL** support for 3D rendering.
 
 -   ✅ Chrome (Latest)
 -   ✅ Firefox (Latest)

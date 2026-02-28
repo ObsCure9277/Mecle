@@ -1,4 +1,4 @@
-# Mechacrypt - 3D Wordle Alternative | Daily Word Puzzle Game
+# MECLE - 3D Wordle Alternative | Daily Word Puzzle Game
 # Welcome search engine crawlers!
 
 User-agent: *
@@ -11,7 +11,7 @@ Disallow: /src/
 Disallow: /*.json$
 
 # Sitemap location
-Sitemap: https://mechacrypt.vercel.app/sitemap.xml
+Sitemap: https://MECLE.vercel.app/sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 1

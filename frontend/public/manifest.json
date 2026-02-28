@@ -1,6 +1,6 @@
 {
-   "name": "Mechacrypt",
-   "short_name": "Mechacrypt",
+   "name": "MECLE",
+   "short_name": "MECLE",
    "description": "A hyper-realistic 3D mechanical word-puzzle game. Tactile Logic. Precision Security.",
    "start_url": "/",
    "display": "standalone",
@@ -9,7 +9,7 @@
    "orientation": "portrait",
    "icons": [
       {
-         "src": "/mechacrypt_favicon.svg",
+         "src": "/MECLE_favicon.svg",
          "sizes": "any",
          "type": "image/svg+xml",
          "purpose": "any maskable"

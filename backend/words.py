@@ -1,4 +1,4 @@
-# Comprehensive 5-letter word list for Mechacrypt
+# Comprehensive 5-letter word list for MECLE
 # Contains 2,309 common 5-letter words used in word games
 
 WORD_LIST = [
