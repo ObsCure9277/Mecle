@@ -62,7 +62,7 @@ export function Game({ mode }: GameProps) {
       <Helmet>
         <title>MECLE - 3D Mechanical Word Puzzle Game | Daily Brain Challenge</title>
         <meta name="description" content="Play MECLE, a stunning 3D mechanical word puzzle game. Solve daily 5-letter encryptions with tactile LED feedback. Free brain-teasing fun!" />
-        <link rel="canonical" href="https://MECLE.vercel.app/" />
+        <link rel="canonical" href="https://mecle.ngshenzhi.com/" />
       </Helmet>
 
       {/* Skip to main content for accessibility */}
