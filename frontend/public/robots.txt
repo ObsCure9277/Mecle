@@ -11,7 +11,7 @@ Disallow: /src/
 Disallow: /*.json$
 
 # Sitemap location
-Sitemap: https://MECLE.vercel.app/sitemap.xml
+Sitemap: https://mecle.ngshenzhi.com/sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 1
